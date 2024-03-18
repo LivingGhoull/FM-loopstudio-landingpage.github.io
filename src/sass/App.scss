@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
 // color
 $white: hsl(0, 0%, 100%);
@@ -35,7 +35,7 @@ $heading: (
     text-transform: uppercase;
     font-weight: $fw-300;
 
-    &.logo{    
+    &.logo {
       color: $white;
       font-family: $ff-altata;
       font-weight: $fw-400;
@@ -43,7 +43,7 @@ $heading: (
     }
   }
 }
- 
+
 body {
   box-sizing: border-box;
   font-size: $body-fs;
@@ -55,7 +55,7 @@ body {
 
 header {
   color: #ffffff;
-  background-image: url("../public/images/mobile/image-hero.jpg");
+  background-image: url("../images/mobile/image-hero.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -76,9 +76,9 @@ footer {
 
 a {
   color: $white;
-  text-decoration: none; 
+  text-decoration: none;
   &:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: $body-fs;
   }
@@ -90,10 +90,10 @@ ul {
 }
 
 .link-hover:hover {
-  display: inline-block; 
+  display: inline-block;
   border-bottom: 2px solid currentColor;
   text-decoration: none;
-  padding-bottom: 15px;  
+  padding-bottom: 15px;
 
   &:hover {
     border-bottom: 2px solid currentColor;
@@ -105,15 +105,25 @@ ul {
 }
 
 .interactive-vr {
-  img { 
-    width: 100%;
+  position: relative;
+
+  &__img {
+    img{
+      width: 100%;
+    }
+  }
+
+  &__info {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    background-color: $white;
   }
 }
 
-
-.test {
+.our-creation {
   img {
-    width: 100%;  
+    width: 100%;
   }
 
   button {
@@ -128,12 +138,11 @@ ul {
     &:hover {
       color: $white;
       background-color: $black;
-    } 
+    }
   }
 
   &__secound {
     position: relative;
-    background: linear-gradient(to right, rgba(0, 0, 0, .65), transparent); 
 
     h4 {
       position: absolute;
@@ -148,35 +157,41 @@ ul {
       content: "";
       position: absolute;
       left: 0;
-      width: 100%; /* Adjust to cover the desired portion */
+      width: 100%;
       height: 100%;
-      opacity: 0;
-      background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)); /* White gradient */
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.65), transparent);
     }
 
-    &:hover{
-
+    &:hover {
       h4 {
         color: $black;
       }
       &::before {
         transition: opacity 300ms ease-in-out;
-        opacity: 1;
+        background: linear-gradient(
+          rgba(255, 255, 255, 0.65),
+          rgba(255, 255, 255, 0.65)
+        ); /* White gradient */
       }
     }
   }
-  
- 
 }
-
 
 .contain-width {
   margin-inline: 2rem;
 }
 
+.social-links {
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  padding-bottom: 1rem;
+  &:hover {
+    border-bottom: 2px solid rgb(255, 255, 255);
+  }
+}
+
 @media (min-width: 960px) {
   header {
-    background-image: url("../public/images/desktop/image-hero.jpg");
+    background-image: url("../images/desktop/image-hero.jpg");
     .hero-section {
       margin: 5rem 0;
     }
@@ -185,12 +200,17 @@ ul {
   .contain-width {
     margin-inline: 10rem;
   }
-  
-  
-  .test {
+
+  .interactive-vr {
+    &__info {
+      position: absolute;
+    }
+  }
+
+  .our-creation {
     &__secound {
-      &::before {   
-       // background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+      &::before {
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
       }
     }
   }
