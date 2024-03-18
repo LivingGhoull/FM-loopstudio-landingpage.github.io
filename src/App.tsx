@@ -1,7 +1,40 @@
+import { useEffect } from "react";
 import "./css/App.min.css";
 
 function App() {
-  const mobilCreatonImages: string[] = [
+  useEffect(() => {
+    const menu = document.getElementById("menu") as HTMLImageElement;
+    const dropdown = document.getElementById("mobil-dropdown") as HTMLBodyElement;
+
+    const handleClick = () => {
+      try {
+        menu?.classList.toggle("open");
+        if (!menu) {
+          throw new Error("mobil menu could not be found!");
+        }
+        if (!dropdown) {
+          throw new Error("dropdown could not be found!");
+        }
+
+        if (menu.classList.contains("open")) {
+          menu.src = "../images/icon-close.svg";
+        } else {
+          menu.src = "../images/icon-hamburger.svg";
+        }
+        dropdown.classList.toggle("d-none");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    menu?.addEventListener("click", handleClick);
+
+    return () => {
+      menu?.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const creationsImages: string[] = [
     "image-deep-earth.jpg",
     "image-night-arcade.jpg",
     "image-soccer-team.jpg",
@@ -12,7 +45,7 @@ function App() {
     "image-fisheye.jpg",
   ];
 
-  const mobilCreatonText: mobilCreatonTextFormat[] = [
+  const creationsText: creationsTextFormat[] = [
     {
       first: "deep",
       second: "earth",
@@ -47,7 +80,7 @@ function App() {
     },
   ];
 
-  type mobilCreatonTextFormat = {
+  type creationsTextFormat = {
     first: string;
     second: string;
   };
@@ -56,9 +89,10 @@ function App() {
     <>
       <header className="py-5">
         <div className="contain-width">
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center navigation">
             <h4 className="logo">loopstudios</h4>
             <img
+              id="menu"
               className="d-block d-lg-none"
               src="../images/icon-hamburger.svg"
               alt="hambuger menu"
@@ -84,6 +118,39 @@ function App() {
               </ul>
             </nav>
           </div>
+
+          <div id="mobil-dropdown" className="d-none">
+            <nav className="contain-width">
+              <ul className="d-flex flex-column gap-4">
+                <li>
+                  <a href="#">
+                    <h5>About</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Careers</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Events</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Products</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Support</h5>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
           <h2 className="hero-section">immersive experiences that deliver</h2>
         </div>
       </header>
@@ -95,10 +162,9 @@ function App() {
             <img
               src="../images/mobile/image-interactive.jpg"
               alt="Person interactive in vr"
-              ps-5
             />
           </div>
-          <div className="mx-2 text-center text-lg-start interactive-vr__info">
+          <div className="mx-2 text-center text-lg-start interactive-vr__info col-lg-6 p-4">
             <h3 className="mt-5 mb-4 m-lg-0">The leader in interactive VR</h3>
             <p>
               Founded in 2011, Loopstudios has been producing world-class
@@ -111,15 +177,14 @@ function App() {
 
         {/* Our creations */}
         <div className="our-creation mt-5">
-
           <div className="mb-5 d-flex justify-content-lg-between justify-content-center align-items-center">
             <h3 className="text-center ">Our creations</h3>
             <button className="d-none d-lg-block m-0">See all</button>
           </div>
 
           <div className="row g-4">
-            {mobilCreatonImages.map((img, index) => (
-              <div className="col-16 col-lg-3">
+            {creationsImages.map((img, index) => (
+              <div key={index} className="col-16 col-lg-3">
                 <div className="our-creation__secound">
                   <img
                     className="d-block d-lg-none"
@@ -132,8 +197,8 @@ function App() {
                     alt={`${img}`}
                   />
                   <h4>
-                    {mobilCreatonText[index].first} <br />
-                    {mobilCreatonText[index].second}
+                    {creationsText[index].first} <br />
+                    {creationsText[index].second}
                   </h4>
                 </div>
               </div>

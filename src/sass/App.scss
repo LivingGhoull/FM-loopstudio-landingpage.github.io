@@ -68,6 +68,23 @@ header {
   }
 }
 
+.navigation {
+  position: relative;
+  z-index: 2;
+}
+
+#mobil-dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: 10rem 0;
+
+  width: 100%;
+  background-color: $black;
+
+}
+
 footer {
   background-color: $black;
   color: $white;
@@ -89,17 +106,6 @@ ul {
   padding: 0;
 }
 
-.link-hover:hover {
-  display: inline-block;
-  border-bottom: 2px solid currentColor;
-  text-decoration: none;
-  padding-bottom: 15px;
-
-  &:hover {
-    border-bottom: 2px solid currentColor;
-  }
-}
-
 .new-section {
   margin: 6rem 0;
 }
@@ -115,6 +121,7 @@ ul {
 
   &__info {
     position: relative;
+    min-height: 50%;
     bottom: 0;
     right: 0;
     background-color: $white;
@@ -189,7 +196,7 @@ ul {
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 992px) {
   header {
     background-image: url("../images/desktop/image-hero.jpg");
     .hero-section {
