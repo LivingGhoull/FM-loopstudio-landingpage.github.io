@@ -3,8 +3,13 @@ import "./css/App.min.css";
 
 function App() {
   useEffect(() => {
-    const menu = document.getElementById("menu") as HTMLImageElement;
-    const dropdown = document.getElementById("mobil-dropdown") as HTMLBodyElement;
+    const menu = document.getElementById("hamburger-icon") as HTMLImageElement;
+    const menuToggle = document.getElementById("menu-toggle");
+    const dropdown = document.getElementById(
+      "mobil-dropdown"
+    ) as HTMLBodyElement;
+
+    console.log(menuToggle);
 
     const handleClick = () => {
       try {
@@ -27,10 +32,10 @@ function App() {
       }
     };
 
-    menu?.addEventListener("click", handleClick);
+    menuToggle?.addEventListener("click", handleClick);
 
     return () => {
-      menu?.removeEventListener("click", handleClick);
+      menuToggle?.removeEventListener("click", handleClick);
     };
   }, []);
 
@@ -91,13 +96,19 @@ function App() {
         <div className="contain-width">
           <div className="d-flex justify-content-between align-items-center navigation">
             <h4 className="logo">loopstudios</h4>
-            <img
-              id="menu"
-              className="d-block d-lg-none"
-              src="../images/icon-hamburger.svg"
-              alt="hambuger menu"
-            />
-
+            <button
+              id="menu-toggle"
+              className="hamburger-menu"
+              aria-controls="mobil-dropdown"
+              aria-expanded="false"
+            >
+              <img
+                id="hamburger-icon"
+                className="d-block d-lg-none"
+                src="../images/icon-hamburger.svg"
+                alt="hambuger menu"
+              />
+            </button>
             <nav className="d-none d-lg-block">
               <ul className="d-flex gap-4">
                 <li>
@@ -157,7 +168,7 @@ function App() {
 
       <main className="contain-width new-section d-flex flex-column">
         {/* Interactive VR */}
-        <div className="interactive-vr row">
+        <section className="interactive-vr row">
           <div className="col-lg-8 col-12 interactive-vr__img">
             <img
               src="../images/mobile/image-interactive.jpg"
@@ -173,10 +184,10 @@ function App() {
               through digital experiences that bind to their brand.
             </p>
           </div>
-        </div>
+        </section>
 
         {/* Our creations */}
-        <div className="our-creation mt-5">
+        <section className="our-creation mt-5">
           <div className="mb-5 d-flex justify-content-lg-between justify-content-center align-items-center">
             <h3 className="text-center ">Our creations</h3>
             <button className="d-none d-lg-block m-0">See all</button>
@@ -208,7 +219,7 @@ function App() {
           <div className="d-flex justify-content-center d-lg-none">
             <button>See all</button>
           </div>
-        </div>
+        </section>
       </main>
 
       <footer className="text-center text-lg-start py-5">
