@@ -68,6 +68,20 @@ header {
   }
 }
 
+.navigation {
+  position: relative;
+  z-index: 2;
+}
+
+#mobil-dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10rem 0;
+  width: 100%;
+  background-color: $black;
+}
+
 footer {
   background-color: $black;
   color: $white;
@@ -89,15 +103,9 @@ ul {
   padding: 0;
 }
 
-.link-hover:hover {
-  display: inline-block;
-  border-bottom: 2px solid currentColor;
-  text-decoration: none;
-  padding-bottom: 15px;
-
-  &:hover {
-    border-bottom: 2px solid currentColor;
-  }
+.hamburger-menu {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
 }
 
 .new-section {
@@ -214,7 +222,7 @@ ul {
   .our-creation {
     &__secound {
       &::before {
-        background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
       }
     }
   }

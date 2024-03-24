@@ -1,7 +1,45 @@
+import { useEffect } from "react";
 import "./css/App.min.css";
 
 function App() {
-  const mobilCreatonImages: string[] = [
+  useEffect(() => {
+    const menu = document.getElementById("hamburger-icon") as HTMLImageElement;
+    const menuToggle = document.getElementById("menu-toggle");
+    const dropdown = document.getElementById(
+      "mobil-dropdown"
+    ) as HTMLBodyElement;
+
+    console.log(menuToggle);
+
+    const handleClick = () => {
+      try {
+        menu?.classList.toggle("open");
+        if (!menu) {
+          throw new Error("mobil menu could not be found!");
+        }
+        if (!dropdown) {
+          throw new Error("dropdown could not be found!");
+        }
+
+        if (menu.classList.contains("open")) {
+          menu.src = "../images/icon-close.svg";
+        } else {
+          menu.src = "../images/icon-hamburger.svg";
+        }
+        dropdown.classList.toggle("d-none");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    menuToggle?.addEventListener("click", handleClick);
+
+    return () => {
+      menuToggle?.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const creationsImages: string[] = [
     "image-deep-earth.jpg",
     "image-night-arcade.jpg",
     "image-soccer-team.jpg",
@@ -12,7 +50,7 @@ function App() {
     "image-fisheye.jpg",
   ];
 
-  const mobilCreatonText: mobilCreatonTextFormat[] = [
+  const creationsText: creationsTextFormat[] = [
     {
       first: "deep",
       second: "earth",
@@ -47,7 +85,7 @@ function App() {
     },
   ];
 
-  type mobilCreatonTextFormat = {
+  type creationsTextFormat = {
     first: string;
     second: string;
   };
@@ -56,14 +94,21 @@ function App() {
     <>
       <header className="py-5">
         <div className="contain-width">
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center navigation">
             <h4 className="logo">loopstudios</h4>
-            <img
-              className="d-block d-lg-none"
-              src="../images/icon-hamburger.svg"
-              alt="hambuger menu"
-            />
-
+            <button
+              id="menu-toggle"
+              className="hamburger-menu"
+              aria-controls="mobil-dropdown"
+              aria-expanded="false"
+            >
+              <img
+                id="hamburger-icon"
+                className="d-block d-lg-none"
+                src="../images/icon-hamburger.svg"
+                alt="hambuger menu"
+              />
+            </button>
             <nav className="d-none d-lg-block">
               <ul className="d-flex gap-4">
                 <li>
@@ -84,13 +129,46 @@ function App() {
               </ul>
             </nav>
           </div>
+
+          <div id="mobil-dropdown" className="d-none">
+            <nav className="contain-width">
+              <ul className="d-flex flex-column gap-4">
+                <li>
+                  <a href="#">
+                    <h5>About</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Careers</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Events</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Products</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <h5>Support</h5>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
           <h2 className="hero-section">immersive experiences that deliver</h2>
         </div>
       </header>
 
       <main className="contain-width new-section d-flex flex-column">
         {/* Interactive VR */}
-        <div className="interactive-vr row">
+        <section className="interactive-vr row">
           <div className="col-lg-8 col-12 interactive-vr__img">
             <img
               src="../images/mobile/image-interactive.jpg"
@@ -106,18 +184,17 @@ function App() {
               through digital experiences that bind to their brand.
             </p>
           </div>
-        </div>
+        </section>
 
         {/* Our creations */}
-        <div className="our-creation mt-5">
-
+        <section className="our-creation mt-5">
           <div className="mb-5 d-flex justify-content-lg-between justify-content-center align-items-center">
             <h3 className="text-center ">Our creations</h3>
             <button className="d-none d-lg-block m-0">See all</button>
           </div>
 
           <div className="row g-4">
-            {mobilCreatonImages.map((img, index) => (
+            {creationsImages.map((img, index) => (
               <div key={index} className="col-16 col-lg-3">
                 <div className="our-creation__secound">
                   <img
@@ -131,8 +208,8 @@ function App() {
                     alt={`${img}`}
                   />
                   <h4>
-                    {mobilCreatonText[index].first} <br />
-                    {mobilCreatonText[index].second}
+                    {creationsText[index].first} <br />
+                    {creationsText[index].second}
                   </h4>
                 </div>
               </div>
@@ -142,7 +219,7 @@ function App() {
           <div className="d-flex justify-content-center d-lg-none">
             <button>See all</button>
           </div>
-        </div>
+        </section>
       </main>
 
       <footer className="text-center text-lg-start py-5">
