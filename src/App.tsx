@@ -95,10 +95,9 @@ function App() {
             <img
               src="../images/mobile/image-interactive.jpg"
               alt="Person interactive in vr"
-              ps-5
             />
           </div>
-          <div className="mx-2 text-center text-lg-start interactive-vr__info">
+          <div className="text-center text-lg-start interactive-vr__info">
             <h3 className="mt-5 mb-4 m-lg-0">The leader in interactive VR</h3>
             <p>
               Founded in 2011, Loopstudios has been producing world-class
@@ -119,7 +118,7 @@ function App() {
 
           <div className="row g-4">
             {mobilCreatonImages.map((img, index) => (
-              <div className="col-16 col-lg-3">
+              <div key={index} className="col-16 col-lg-3">
                 <div className="our-creation__secound">
                   <img
                     className="d-block d-lg-none"
@@ -149,7 +148,7 @@ function App() {
       <footer className="text-center text-lg-start py-5">
         <div className="contain-width d-flex flex-column flex-lg-row gap-3 justify-content-between">
           <div className="d-flex flex-column gap-4">
-            <h4 className="logo">loopstudios</h4>
+            <h4 className="logo pb-3">loopstudios</h4>
 
             <nav>
               <ul className="d-flex flex-column gap-4 flex-lg-row">
