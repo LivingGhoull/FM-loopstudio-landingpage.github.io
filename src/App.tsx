@@ -9,8 +9,6 @@ function App() {
       "mobil-dropdown"
     ) as HTMLBodyElement;
 
-    console.log(menuToggle);
-
     const handleClick = () => {
       try {
         menu?.classList.toggle("open");
@@ -130,7 +128,7 @@ function App() {
             </nav>
           </div>
 
-          <div id="mobil-dropdown" className="d-none">
+          <div id="mobil-dropdown" className="d-none d-lg-none">
             <nav className="contain-width">
               <ul className="d-flex flex-column gap-4">
                 <li>
